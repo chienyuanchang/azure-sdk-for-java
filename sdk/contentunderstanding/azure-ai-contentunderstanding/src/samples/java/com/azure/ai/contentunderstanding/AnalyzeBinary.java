@@ -22,7 +22,7 @@ import java.nio.file.Files;
 import java.util.List;
 
 /**
- * Sample for analyzing a PDF file using the prebuilt-documentAnalyzer.
+ * Sample for analyzing a PDF file using the prebuilt-documentSearch.
  *
  * Prerequisites:
  *     - Azure subscription
@@ -113,13 +113,13 @@ public class AnalyzeBinary {
 
             // Step 4: Analyze document
             System.out.println("Step 4: Analyzing document...");
-            System.out.println("  Analyzer: prebuilt-documentAnalyzer");
+            System.out.println("  Analyzer: prebuilt-documentSearch");
             System.out.println("  Analyzing...");
 
             AnalyzeResult result;
             try {
                 SyncPoller<ContentAnalyzerAnalyzeOperationStatus, AnalyzeResult> operation =
-                    client.beginAnalyzeBinary("prebuilt-documentAnalyzer", "application/pdf",
+                    client.beginAnalyzeBinary("prebuilt-documentSearch", "application/pdf",
                         BinaryData.fromBytes(pdfBytes));
                 // SyncPoller does not expose getStatus() directly; poll once and print the poll response status.
                 System.err.println(operation.poll().getStatus());
