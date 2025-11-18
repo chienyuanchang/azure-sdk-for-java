@@ -200,7 +200,7 @@ public final class AudioVisualContent extends MediaContent {
         jsonWriter.writeNumberField("height", this.height);
         jsonWriter.writeArrayField("cameraShotTimesMs", this.cameraShotTimesMs,
             (writer, element) -> writer.writeLong(element));
-        jsonWriter.writeArrayField("keyFrameTimesMs", this.keyFrameTimesMs,
+        jsonWriter.writeArrayField("KeyFrameTimesMs", this.keyFrameTimesMs,
             (writer, element) -> writer.writeLong(element));
         jsonWriter.writeArrayField("transcriptPhrases", this.transcriptPhrases,
             (writer, element) -> writer.writeJson(element));
@@ -263,7 +263,7 @@ public final class AudioVisualContent extends MediaContent {
                     height = reader.getNullable(JsonReader::getInt);
                 } else if ("cameraShotTimesMs".equals(fieldName)) {
                     cameraShotTimesMs = reader.readArray(reader1 -> reader1.getLong());
-                } else if ("keyFrameTimesMs".equals(fieldName)) {
+                } else if ("KeyFrameTimesMs".equals(fieldName)) {
                     keyFrameTimesMs = reader.readArray(reader1 -> reader1.getLong());
                 } else if ("transcriptPhrases".equals(fieldName)) {
                     transcriptPhrases = reader.readArray(reader1 -> TranscriptPhrase.fromJson(reader1));
