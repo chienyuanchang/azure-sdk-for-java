@@ -85,17 +85,35 @@ public final class SupportedModels implements JsonSerializable<SupportedModels> 
      */
     @Generated
     public static SupportedModels fromJson(JsonReader jsonReader) throws IOException {
+        // Check if the current token is an array instead of an object
+        if (jsonReader.currentToken() == JsonToken.START_ARRAY) {
+            // Skip the array if it's returned instead of an object
+            jsonReader.skipChildren();
+            return new SupportedModels(null, null);
+        }
+
         return jsonReader.readObject(reader -> {
             Map<String, String> completion = null;
             Map<String, String> embedding = null;
+
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("completion".equals(fieldName)) {
-                    completion = reader.readMap(reader1 -> reader1.getString());
+                    // Check if completion is an array instead of a map
+                    if (reader.currentToken() == JsonToken.START_ARRAY) {
+                        reader.skipChildren();
+                    } else {
+                        completion = reader.readMap(reader1 -> reader1.getString());
+                    }
                 } else if ("embedding".equals(fieldName)) {
-                    embedding = reader.readMap(reader1 -> reader1.getString());
+                    // Check if embedding is an array instead of a map
+                    if (reader.currentToken() == JsonToken.START_ARRAY) {
+                        reader.skipChildren();
+                    } else {
+                        embedding = reader.readMap(reader1 -> reader1.getString());
+                    }
                 } else {
                     reader.skipChildren();
                 }

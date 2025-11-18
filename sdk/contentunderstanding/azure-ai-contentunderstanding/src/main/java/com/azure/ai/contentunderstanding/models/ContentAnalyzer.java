@@ -591,7 +591,14 @@ public final class ContentAnalyzer implements JsonSerializable<ContentAnalyzer> 
                     Map<String, String> models = reader.readMap(reader1 -> reader1.getString());
                     deserializedContentAnalyzer.models = models;
                 } else if ("supportedModels".equals(fieldName)) {
-                    deserializedContentAnalyzer.supportedModels = SupportedModels.fromJson(reader);
+                    // Handle supportedModels which may be returned as an array instead of an object
+                    JsonToken token = reader.currentToken();
+                    if (token == JsonToken.START_ARRAY) {
+                        reader.skipChildren();
+                        deserializedContentAnalyzer.supportedModels = null;
+                    } else {
+                        deserializedContentAnalyzer.supportedModels = SupportedModels.fromJson(reader);
+                    }
                 } else {
                     reader.skipChildren();
                 }
