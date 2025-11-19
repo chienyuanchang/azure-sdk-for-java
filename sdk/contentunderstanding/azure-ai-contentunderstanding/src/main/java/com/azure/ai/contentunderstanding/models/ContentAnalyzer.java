@@ -547,7 +547,6 @@ public final class ContentAnalyzer implements JsonSerializable<ContentAnalyzer> 
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the ContentAnalyzer.
      */
-    @Generated
     public static ContentAnalyzer fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
             ContentAnalyzer deserializedContentAnalyzer = new ContentAnalyzer();

@@ -83,7 +83,6 @@ public final class SupportedModels implements JsonSerializable<SupportedModels> 
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the SupportedModels.
      */
-    @Generated
     public static SupportedModels fromJson(JsonReader jsonReader) throws IOException {
         // Check if the current token is an array instead of an object
         if (jsonReader.currentToken() == JsonToken.START_ARRAY) {
